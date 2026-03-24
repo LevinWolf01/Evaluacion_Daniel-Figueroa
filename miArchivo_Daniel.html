@@ -4,7 +4,166 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Helados Deliciosos </title>
-    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: rgba(255,255,255,0.95);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .grid-sabores {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .sabor-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .sabor-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .sabor-card.seleccionado {
+            border: 4px solid #ff6b6b;
+            transform: scale(1.05);
+        }
+
+        .sabor-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        .sabor-info {
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .sabor-info h3 {
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .precio {
+            color: #ff6b6b;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .opciones, .resumen {
+            max-width: 600px;
+            margin: 2rem auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .opcion {
+            margin: 1rem 0;
+            font-size: 1.1rem;
+        }
+
+        .opcion label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        select {
+            padding: 10px;
+            font-size: 1.1rem;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        #resumen-pedido {
+            min-height: 100px;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .total {
+            font-size: 1.8rem;
+            text-align: center;
+            margin: 1.5rem 0;
+            color: #ff4757;
+        }
+
+        .btn-pedir {
+            width: 100%;
+            padding: 18px;
+            font-size: 1.5rem;
+            background: linear-gradient(45deg, #ff6b6b, #ff4757);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .btn-pedir:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            margin-top: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .grid-sabores {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 1rem;
+                padding: 1rem;
+            }
+            
+            header h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -15,7 +174,7 @@
     <main>
         <!-- Sabores -->
         <section class="sabores">
-            <h2>Elige tus sabores</h2>
+            <h2 style="text-align:center; margin: 2rem 0 1rem;">Elige tus sabores</h2>
             <div class="grid-sabores" id="sabores-container">
                 <!-- Se llenan con JavaScript -->
             </div>
@@ -43,32 +202,3 @@
                 <label>Cantidad de bolas:</label>
                 <select id="cantidad-bolas">
                     <option value="1">1 bola - $8.000</option>
-                    <option value="2" selected>2 bolas - $14.000</option>
-                    <option value="3">3 bolas - $19.000</option>
-                    <option value="4">4 bolas - $23.000</option>
-                </select>
-            </div>
-        </section>
-
-        <!-- Resumen del pedido -->
-        <section class="resumen">
-            <h2>Tu pedido</h2>
-            <div id="resumen-pedido">
-                <p>Aún no has seleccionado sabores...</p>
-            </div>
-            
-            <div class="total">
-                <strong>Total: <span id="total-precio">$0</span></strong>
-            </div>
-
-            <button id="btn-pedir" class="btn-pedir">¡Pedir ahora! </button>
-        </section>
-    </main>
-
-    <footer>
-        <p>Helados Deliciosos  2026 - Bogotá, Colombia</p>
-    </footer>
-
-    <script src="helados_Mi_Alegria.js"></script>
-</body>
-</html>
